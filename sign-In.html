@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Ip</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+   <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .signIn-sec{
+        display:flex;
+    }
+   .signIn-leftp{
+    background: rgb(219, 223, 224);
+    width:50%;
+    overflow: hidden;
+    margin-right:5px;
+   }
+   #logo{
+    filter:invert(1);
+    width:200px;
+    align-items:center;
+    text-align:center;
+    margin-left:60px;
+    margin-top:50px;
+   }
+   .content{
+    margin-left:40px;
+   }
+   .content h4{
+        font-size:40px;
+        margin-top:30px;
+        margin-bottom:80px;
+   }
+   .content p{
+        font-size:20px;
+        margin-bottom:80px;
+   }
+   #btm-img{
+    width:100%;
+    margin-left:20px;
+    margin-top:50px;
+   }
+   /*=====right =====*/
+.signIn-rightp{
+       /* border:2px solid red;    */
+        margin-top:90px;
+        width:50%;
+        align-items: center;
+        text-align: center;   
+
+   }
+   .log-in,.create-act{
+    font-size:20px;
+    margin:50px 30px;
+    text-decoration: none;
+    
+   }
+#goog-cont{
+    position:relative;
+    margin-top:80px;
+    font-size:20px;
+    padding:8px 8px;
+    border-radius:10px;
+    border-color: azure;
+}
+#goog-cont img{
+    margin-right:20px;
+}
+#goog-cont:hover{
+    background: ghostwhite;
+}
+.or{
+    margin:50px 0;
+    font-size:25px;
+}
+.form{
+    border:2px solid rgb(180, 175, 175);  
+    margin-left:200px;
+    margin-right:10px;
+    width:350px;
+    height:350px;
+    align-items: center;
+    text-align: center;
+}
+.email{
+    font-size: 20px;
+    margin-left:-220px;
+   /* margin-bottom:30px;
+    margin-top:20px;   */
+   
+}
+.passwd{
+    font-size: 20px;
+    margin-left:-130px;
+ /*   margin-bottom:20px;
+    margin-top:20px;   */
+}
+#forgot{
+    font-size:20px;
+    padding-top:-10px;
+}
+#email,#passwd,#log-in{
+    font-size: 20px;
+    padding:5px;
+    margin:10px 20px;
+    border-radius:10px;
+    border-color:rgb(162, 165, 165);
+    margin-left:0px;
+}
+.log-in:hover,.log-in .create-act:hover{
+    text-decoration: underline;
+    border-bottom: rgb(107, 20, 107);
+}
+#email-error{
+    color:red;
+}
+#passwd-error{
+    color:red;
+}
+#log-in{
+    background-color: blueviolet;
+    color:#fff;
+    padding:7px 7px;
+}
+@media(max-width:1000px){
+    .form{
+        float:left;
+        margin-left:10px;
+    }
+}
+   </style>
+</head>
+<body>
+    <section class="signIn-sec">
+        <div class="signIn-leftp">
+            <img id="logo"src="tcs-imgs/logo-white.a9c6c41f-telentdrop-logo.svg">
+            <div class="content">
+                <h4>Build a pipeline of great talent.</h4>
+                <p>Create your own profile to expand your hiring reach, easily.</p>
+            </div>
+            <div class="btm-img">
+                <img id="btm-img"src="auth-hero-loh-in.webp">
+            </div>
+        </div>
+        <div class="signIn-rightp">
+            <span>
+                <a href="" class="log-in">Log in</a>
+                <a href="" class="create-act">Create an account</a>
+                <br>
+                <button id="goog-cont"><img src="google-svg.jpg" style="width:20px;">Continue with Google</button>
+                <br>
+                <p class="or">or</p>
+                <div class="form">
+                    <label class="email">Email</label><br>
+                    <input type="email" id="email" placeholder="Enter your email">  
+                    <span id="email-error"></span><br>
+                    <label class="passwd">Password</label>
+                    <a href="" id="forgot">Forgot?</a><br>
+                    <input type="password" id="passwd" placeholder="Enter a password"><br>
+                    <span id="passwd-error"></span>
+                    <br>
+                    <br>
+                    <button type="submit" id="log-in">Log in </button>
+                    <p>Don't have an account? <a id="up-btm" href="">Sigh up</a></p>
+                </div>
+            </span>
+        </div>  
+    </section>
+<script>
+    var form=document.querySelector("form");
+    var email=document.querySelector("#email");
+    var passwd=document.querySelector("#passwd");
+    var login_btn=document.querySelector("#log-in");
+    login_btn.addEventListener("click",function (event){
+        event.preventDefault();  
+
+        var emailValue = email.value.trim();
+    var passwdValue = passwd.value.trim();
+
+    var emailError = document.getElementById("email-error");
+    var passwdError = document.getElementById("passwd-error");
+
+    emailError.innerText="";
+    passwdError.innerText="";
+
+    if (emailValue === "") {
+     emailError.innerHTML= "Please fill in your email.";
+      return false;
+    }
+
+    if (emailValue.indexOf('@') <= 0 || emailValue.lastIndexOf('.') <= emailValue.indexOf('@')) {
+      emailError.innerText = "Invalid email format.";
+      return false;
+    }
+
+    if (passwdValue === ""){
+    passwdError.innerText = "Please fill in your password.";
+      return false;
+    }
+
+    if (passwdValue.length < 8 || passwdValue.length > 20) {
+      passwdError.innerText = "Password length should be between 8 and 20 characters.";
+      return false;
+    }
+  
+    });
+    
+    var logIn=document.querySelector("#log-in");
+    var upBtm=document.querySelector("#up-btm");
+
+
+    /*==============create-log ============*/
+    var createAccount=document.querySelector(".create-act");
+    createAccount.addEventListener("click",function (){
+            logIn.innerHTML = "Sign up";
+            upBtm.innerHTML="Log in";
+    var log=document.querySelector("#log-in");
+    log.addEventListener("click",function(){
+        log.innerHTML="Log in";
+        upBtm.innerHTML="Sign up";
+    });
+    
+     
+    });
+
+
+     
+      
+    
+    
+    
+</script>
+</body>
+</html>
